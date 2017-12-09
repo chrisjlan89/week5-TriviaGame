@@ -3,6 +3,9 @@
 window.onload = function() {
   $("#start-button").on("click", triviaGame.countDown );
   $("#submit").on("click", triviaGame.compareSubmit);
+  if(counter ==  3){
+     $("#submit").on("click", triviaGame.endGame)
+   }
 };
 
 
@@ -35,9 +38,6 @@ var triviaGame = {
     $("#submit").show();
 }
 
-if(timerDown == 0){
-  
-}
 
 
  },
@@ -56,29 +56,35 @@ if(timerDown == 0){
           triviaGame.countDown();
           console.log(rightGuess);
           clearInterval(timerInterval);
+          console.log(counter)
+          $("#question-display").text("You got " + rightGuess + " / " + counter +"right.")
+
         }
+
+
 
         else{
           counter++;
           triviaGame.countDown();
           clearInterval(timerInterval);
+           console.log(counter)
+           $("#question-display").text("You got " + rightGuess + " / " + counter +"right.")
 
         }
+
         $("#qu" +  counter.toString()).hide();
         $("#qu" + (counter+1).toString()).show();
       
      },
-
+     
 
      endGame : function(){
-      if(counter ==  3){
-        
-        $("#qu" +  counter.toString()).hide();
+      $("#qu" +  counter.toString()).hide();
         $("#question-display").text("You got " + rightGuess + " / " + counter +"right.")
-        
-      }
+        $("#submit").on("click", triviaGame.endGame)
+      
      }
    
 };
 
-triviaGame.endGame();
+triviaGame.endGame;
