@@ -10,14 +10,18 @@
 }
 
 #game-area {
-	margin-top: 15%
+	margin-top: 15%;
 }
 
-input[name=optradio]{
+input[name="optradio"]{
 	color: #4d8b8c;
-};
+}
 
 
 h2{
+	color: #4d8b8c;
+}
+
+.radio{
 	color: #4d8b8c;
 }
