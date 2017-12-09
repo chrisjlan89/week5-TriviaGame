@@ -12,3 +12,7 @@
 #game-area {
 	margin-top: 15%
 }
+
+input[name=optradio]{
+	color: #4d8b8c;
+};

@@ -13,6 +13,7 @@ var randomQ;
 var answerList =[ "joker" , "rough", "miaymoto"]
 var rightGuess = 0;
 var counter = 0;
+$("#submit").hide();
 $("#qu1").hide();
  $("#qu2").hide();
  $("#qu3").hide();
@@ -31,6 +32,11 @@ var triviaGame = {
       , 1000);
     if(counter == 0 ){
     $("#qu1").show();
+    $("#submit").show();
+}
+
+if(timerDown == 0){
+  
 }
 
 
@@ -66,6 +72,7 @@ var triviaGame = {
 
      endGame : function(){
       if(counter ==  3){
+        
         $("#qu" +  counter.toString()).hide();
         $("#question-display").text("You got " + rightGuess + " / " + counter +"right.")
         
@@ -75,40 +82,3 @@ var triviaGame = {
 };
 
 triviaGame.endGame();
-
-/*var questions = [{
-  question: "What is the name of the the main protagonist / player character of the RPG perosna 5?",
-  answerList: ["Joker", "Thief", "Skull", "Trickster"],
-  answer: 1
-},{
-  question: "Teddy Roosevelt's regiment during the 1898 Spanish American war was nicknamed what?",
-  answerList: ["Bull Moose Party", "Rough Riders", "The Buffalos", "1st United States Volunteer Cavalry"],
-  answer: 0
-
-},
-
-{
-  question: "Who is considered the 'father' of The 'Legend of Zelda' Series?"
-  answerList : ["Gunpei Yokoi" , "Koji Igarashi" "Shigeru Miaymoto" , "Keiji Inafune"]
-  answer: 2
-}
-];*/
-
-
-
-
-/*var triviaGame = {
-  countDown : function(){
-    $("#game-area").show();
-    $("#jmb").hide();
-    timerInterval = setInterval(function() {
-      timerDown--
-      $("#timer").text(timerDown);
-      if (timerDown <= 0){
-        clearInterval(timerInterval);
-      }}
-      , 1000);
-    
- }
-};
-*/
