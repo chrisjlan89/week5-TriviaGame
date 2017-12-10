@@ -22,13 +22,14 @@ $("#qu1").hide();
  $("#qu2").hide();
  $("#qu3").hide();
  $("#qu4").hide();
- $("#qu5").hide()
+ $("#qu5").hide();
 
 var answer;
 var triviaGame = {
   countDown : function(){
+    $("#start-button").hide();
  //  $("#question-display").empty();
-    timerDown = 5;
+    timerDown = 26;
     console.log("time down : " + timerDown)
     timerInterval = setInterval(function() {
       timerDown--
@@ -59,7 +60,7 @@ var triviaGame = {
         var val = $('input[name=optradio' + counter+ ']:checked').val();
        // alert(val);
        console.log(val)
-
+        
         if(val == answerList[counter]){
           rightGuess++;
           counter++;
@@ -67,9 +68,12 @@ var triviaGame = {
           console.log(rightGuess);
           clearInterval(timerInterval);
           console.log(counter)
-          $("#question-display").text("You got " + rightGuess + " / " + counter +"right.")
 
+          $("#question-display").text("You got " + rightGuess + " / " + counter +"right.")
+            
         }
+
+
 
 
 
@@ -81,15 +85,17 @@ var triviaGame = {
           //triviaGame.countDown();
            clearInterval(timerInterval);
            console.log(counter)
-           $("#question-display").text("You got " + rightGuess + " / " + counter + " right.")
+           $("#question-display").text(" You got " + rightGuess + " / " + counter + " right. ")
 
         }
-
+   //     setTimeout(function(){
         $("#qu" +  counter.toString()).hide();
         $("#qu" + (counter+1).toString()).show();
 
+
         var val;
         triviaGame.countDown();
+      //   }, 3000);      
        if(counter ==  5){
            triviaGame.endGame()
        }
@@ -102,7 +108,7 @@ var triviaGame = {
       $("#submit").hide();
       clearInterval(timerInterval)
       $("#qu" +  counter.toString()).hide();
-      $("#question-display").text("You got " + rightGuess + " / " + counter +" right.")
+      $("#question-display").text("You got " + rightGuess + " / " + counter +" right. ")
       // $("#submit").on("click", triviaGame.endGame)
       
      
