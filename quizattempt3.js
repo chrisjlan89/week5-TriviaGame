@@ -3,33 +3,32 @@
 window.onload = function() {
   $("#start-button").on("click", triviaGame.countDown );
   $("#submit").on("click", triviaGame.compareSubmit);
-   $("#submit").on("click", triviaGame.endGame) 
+ //  $("#submit").on("click", triviaGame.endGame) 
    // I thought this would make endGame call even if the user didn't cick submit
    // on the last question. It did not work that way.
-   if(counter ==  3){
-      trivia.endGame();
-   }
-   
+  
 };
 
 
 var delayButtonAlert;
-var timerDown =31;
+var timerDown;
 var timerInterval;
 var randomQ;
-var answerList =[ "joker" , "rough", "miaymoto"]
+var answerList =[ "joker" , "kingdom", "miaymoto" , "simon" , "chrono"]
 var rightGuess = 0;
 var counter = 0;
 $("#submit").hide();
 $("#qu1").hide();
  $("#qu2").hide();
  $("#qu3").hide();
+ $("#qu4").hide();
+ $("#qu5").hide()
 
 var answer;
 var triviaGame = {
   countDown : function(){
  //  $("#question-display").empty();
-    timerDown = 3;
+    timerDown = 5;
     console.log("time down : " + timerDown)
     timerInterval = setInterval(function() {
       timerDown--
@@ -45,6 +44,7 @@ var triviaGame = {
     if(counter == 0 ){
     $("#qu1").show();
     $("#submit").show();
+   
 }
 
 
@@ -81,7 +81,7 @@ var triviaGame = {
           //triviaGame.countDown();
            clearInterval(timerInterval);
            console.log(counter)
-           $("#question-display").text("You got " + rightGuess + " / " + counter +"right.")
+           $("#question-display").text("You got " + rightGuess + " / " + counter + " right.")
 
         }
 
@@ -90,22 +90,23 @@ var triviaGame = {
 
         var val;
         triviaGame.countDown();
-
+       if(counter ==  5){
+           triviaGame.endGame();
+       }
         
      },
      
 
      endGame : function(){
-      if(counter ==  3){
-        $("#submit").hide();
-         clearInterval(timerInterval)
-      $("#qu" +  counter.toString()).hide();
-        $("#question-display").text("You got " + rightGuess + " / " + counter +"right.")
-        $("#submit").on("click", triviaGame.endGame)
       
-     }
+      $("#submit").hide();
+      clearInterval(timerInterval)
+      $("#qu" +  counter.toString()).hide();
+      $("#question-display").text("You got " + rightGuess + " / " + counter +" right.")
+      // $("#submit").on("click", triviaGame.endGame)
+      
+     
    }
    
 };
 
-triviaGame.endGame;
