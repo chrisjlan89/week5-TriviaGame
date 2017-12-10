@@ -91,7 +91,7 @@ var triviaGame = {
         var val;
         triviaGame.countDown();
        if(counter ==  5){
-           triviaGame.endGame();
+           triviaGame.endGame()
        }
         
      },
