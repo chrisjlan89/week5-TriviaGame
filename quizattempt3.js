@@ -88,7 +88,7 @@ var triviaGame = {
            $("#question-display").text(" You got " + rightGuess + " / " + counter + " right. ")
 
         }
-   //     setTimeout(function(){
+   //1q     setTimeout(function(){
         $("#qu" +  counter.toString()).hide();
         $("#qu" + (counter+1).toString()).show();
 
