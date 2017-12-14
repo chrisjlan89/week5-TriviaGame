@@ -4,8 +4,7 @@ window.onload = function() {
   $("#start-button").on("click", triviaGame.countDown );
   $("#submit").on("click", triviaGame.compareSubmit);
  //  $("#submit").on("click", triviaGame.endGame) 
-   // I thought this would make endGame call even if the user didn't cick submit
-   // on the last question. It did not work that way.
+  
   
 };
 
@@ -17,6 +16,8 @@ var randomQ;
 var answerList =[ "joker" , "kingdom", "miaymoto" , "simon" , "chrono"]
 var rightGuess = 0;
 var counter = 0;
+
+var questionTime = false;
 $("#submit").hide();
 $("#qu1").hide();
  $("#qu2").hide();
@@ -36,7 +37,7 @@ var triviaGame = {
 
       $("#question-display").html("<div class =timer>" + timerDown + "</div>");
       if (timerDown <= 0){
-        console.log("clear intervaL called");
+        console.log("clear interval called");
         clearInterval(timerInterval);
         triviaGame.compareSubmit();
 
@@ -56,6 +57,12 @@ var triviaGame = {
 
 
      compareSubmit : function() {
+    
+    // attempt to make the user unable to press submit
+    // if a button wasn't check
+    /*  if (!questionTime){
+        return;
+      }*/
       console.log("qu" + counter);
         var val = $('input[name=optradio' + counter+ ']:checked').val();
        // alert(val);
@@ -69,7 +76,7 @@ var triviaGame = {
           clearInterval(timerInterval);
           console.log(counter)
 
-          $("#question-display").text("You got " + rightGuess + " / " + counter +"right.")
+          $("#question-display").text(" You got " + rightGuess + " / " + counter +" right. ")
             
         }
 
@@ -88,14 +95,20 @@ var triviaGame = {
            $("#question-display").text(" You got " + rightGuess + " / " + counter + " right. ")
 
         }
-   //1q     setTimeout(function(){
-        $("#qu" +  counter.toString()).hide();
-        $("#qu" + (counter+1).toString()).show();
 
+        // made changes to hide the submit button from the user
+        // and hide the previous question, and giving the user
+        // 5 seconds to view thier score.
+        $("#qu" +  counter.toString()).hide();
+        $("#submit").hide();
+setTimeout(function(){
+        
+        $("#qu" + (counter+1).toString()).show();
+        $("#submit").show();
 
         var val;
         triviaGame.countDown();
-      //   }, 3000);      
+}, 5000);      
        if(counter ==  5){
            triviaGame.endGame()
        }
